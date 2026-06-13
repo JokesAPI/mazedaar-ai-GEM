@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mazedaar AI</title>
   <style>
     body {
@@ -10,32 +11,35 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
     }
     #chatbox {
       width: 700px;
       max-width: 95%;
       background: white;
-      padding: 20px;
-      border-radius: 10px;
-     box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
     }
     h2 {
       margin-top: 0;
       text-align: center;
       color: #0078D7;
+      font-size: 26px;
     }
     #messages {
       height: 500px;
-	    overflow-y: auto;
+      overflow-y: auto;
       border: 1px solid #ddd;
-      padding: 10px;
+      padding: 14px;
       margin-bottom: 10px;
-      border-radius: 6px;
+      border-radius: 8px;
       background: #fafafa;
     }
-    .message { margin: 6px 0; line-height: 1.5; }
+    .message { margin: 8px 0; line-height: 1.6; font-size: 15px; }
     .user { color: blue; }
     .bot { color: green; }
     .error { color: red; }
@@ -45,18 +49,18 @@
     }
     #userInput {
       flex: 1;
-      padding: 10px;
+      padding: 12px;
       font-size: 15px;
       border: 1px solid #ccc;
-      border-radius: 6px;
+      border-radius: 8px;
     }
     button {
-      padding: 10px 16px;
+      padding: 12px 20px;
       font-size: 15px;
       background-color: #0078D7;
       color: white;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
     }
     button:hover { background-color: #005fa3; }
@@ -72,7 +76,7 @@
   <div id="chatbox">
     <h2>Mazedaar AI</h2>
     <div id="messages">
-      <div class="message bot"><b>Bot:</b> Namaste! I am Mazedaar AI. Ask me anything or say "hindi joke" / "telugu joke"!</div>
+      <div class="message bot"><b>Genie:</b> Hello! I am Mazedaar AI. Ask me anything or say "hindi joke" / "telugu joke"!</div>
     </div>
     <div id="langLabel">Language: auto-detect</div>
     <div id="inputRow">
@@ -99,7 +103,7 @@
       messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
       const typingId = "typing_" + Date.now();
-      messagesDiv.innerHTML += `<div class="message bot" id="${typingId}"><b>Bot:</b> typing...</div>`;
+      messagesDiv.innerHTML += `<div class="message bot" id="${typingId}"><b>Genie:</b> typing...</div>`;
       messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
       try {
@@ -113,9 +117,9 @@
         document.getElementById(typingId).remove();
 
         if (data.error) {
-          messagesDiv.innerHTML += `<div class="message error"><b>Bot:</b> Error: ${data.error}</div>`;
+          messagesDiv.innerHTML += `<div class="message error"><b>Genie:</b> Error: ${data.error}</div>`;
         } else {
-          messagesDiv.innerHTML += `<div class="message bot"><b>Bot:</b> ${data.response}</div>`;
+          messagesDiv.innerHTML += `<div class="message bot"><b>Genie:</b> ${data.response}</div>`;
           if (data.language_detected) {
             langLabel.innerText = "Language detected: " + data.language_detected;
           }
@@ -123,7 +127,7 @@
 
       } catch (error) {
         document.getElementById(typingId).remove();
-        messagesDiv.innerHTML += `<div class="message error"><b>Bot:</b> Error connecting to server. Make sure app.py is running.</div>`;
+        messagesDiv.innerHTML += `<div class="message error"><b>Genie:</b> Error connecting to server. Make sure app.py is running.</div>`;
       }
 
       messagesDiv.scrollTop = messagesDiv.scrollHeight;
